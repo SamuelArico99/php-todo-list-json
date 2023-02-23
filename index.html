@@ -30,8 +30,8 @@
                 </ul>
 
             </div>
-            <form action="">
-                <input type="text" placeholder="Inserisci elemento...">
+            <form action="api.php" method="post" @submit.prevent="addTask()">
+                <input type="text" v-model="newTask.taskName" placeholder="Inserisci elemento...">
                 <button>Inserisci</button>
             </form>
         </div>
