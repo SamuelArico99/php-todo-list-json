@@ -14,12 +14,26 @@ createApp({
     },
     methods: {
         addTask() {
-            console.log(this.newTask);
-            axios.post('', {
-                task: this.newTask
-            }).then((response) => {
-                console.log(response)
-            });
+            console.log('chiamato task', this.newTask);
+
+            axios
+                .post('./create.php', {
+                    task: this.newTask
+                },
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                .then((response) => {
+                    console.log(response);
+
+                    this.todos.push({
+                        taskName: this.newTask.taskName,
+                        done: this.newTask.done
+                    })
+                    this.newTask.taskName = '';
+                })
         }
     },
     created() {
